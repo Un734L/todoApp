@@ -19,13 +19,15 @@ from django.urls import path,include
 import debug_toolbar
 from django.conf import settings
 from authApp import views
+from todoApp import views as views2
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('authApp.urls')),
-    path('login/',views.loginView,name='login'),
-    path('logout/',views.logoutView,name='logout'),
-    path('register/',views.registerView,name='register')
+    path('accounts/login/',views.loginView,name='login'),
+    path('accounts/logout/',views.logoutView,name='logout'),
+    path('accounts/register/',views.registerView,name='register'),
+    path('tasks/',include('todoApp.urls'))
 ]
 
 if settings.DEBUG:
