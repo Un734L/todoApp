@@ -61,7 +61,7 @@
                     <td>
                         <button type="button">Complete</button>
                         <button type="button"><a href="{% url 'todoApp:task_update' task.id %}">Update</a></button>
-                        <button type="button">Delete</button>
+                        <button type="button"><a href="{% url 'todoApp:task_delete' task.id %}">Delete</a></button>
                     </td>
                 </tr>
                 {% endfor %}
