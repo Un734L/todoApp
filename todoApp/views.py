@@ -54,10 +54,17 @@ def taskDeleteView(request,task_id):
 
 @login_required
 def taskDetailsView(request,task_id):
-    pass
+    task=Task.objects.get(user=request.user,id=task_id)
+    completedTask=None
+    if task.isCompleted==True:
+        completedTask=task
+    return render(request,'todoApp/details.html',{'task':task,'completedTask':completedTask})
 
 @login_required
 def taskCompleteView(request,task_id):
-    task=Task.objects.filter(user=request.user,id=task_id)
+    task=Task.objects.get(user=request.user,id=task_id)
+    print(task.isCompleted)
     task.isCompleted = not task.isCompleted
+    print(task.isCompleted)
+    task.save()
     return redirect('todoApp:task_list')

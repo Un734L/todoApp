@@ -7,11 +7,12 @@
 </head>
 <body>
     <div>
+        
         <h2>Task Update</h2>
         <form  method="post">
             {% csrf_token %}
             {{form.as_p}}
-            <button type="submit">Update</button>
+            <button type="button"><a href="{% url 'todoApp:task_list' %}">Back</a></button> <button type="submit">Update</button> 
         </form>
     </div>
 </body>

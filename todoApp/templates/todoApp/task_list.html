@@ -33,7 +33,10 @@
                     <td>Completed</td>
                     <td>{{task.task_title}}</td>
                     <td>{{task.date_recorded}}</td>
-                    <td><button type="button">View Details</button></td>
+                    <td>
+                        <button type="button"><a href="{% url 'todoApp:task_details' task.id %}">Details</a></button>
+                        <button type="button"><a href="{% url 'todoApp:task_complete' task.id %}">Revert</a></button>
+                    </td>
                 </tr>
                 {% endfor %}
             
@@ -59,7 +62,8 @@
                     <td>{{task.task_title}}</td>
                     <td>{{task.date_recorded}}</td>
                     <td>
-                        <button type="button">Complete</button>
+                        <button type="button"><a href="{% url 'todoApp:task_details' task.id %}">Details</a></button>
+                        <button type="button"><a href="{% url 'todoApp:task_complete' task.id %}">Complete</a></button>
                         <button type="button"><a href="{% url 'todoApp:task_update' task.id %}">Update</a></button>
                         <button type="button"><a href="{% url 'todoApp:task_delete' task.id %}">Delete</a></button>
                     </td>
