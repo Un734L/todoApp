@@ -27,7 +27,7 @@ urlpatterns = [
     path('accounts/login/',views.loginView,name='login'),
     path('accounts/logout/',views.logoutView,name='logout'),
     path('accounts/register/',views.registerView,name='register'),
-    path('tasks/',include('todoApp.urls'))
+    path('tasks/',include('todoApp.urls',namespace=('todoApp')))
 ]
 
 if settings.DEBUG:
