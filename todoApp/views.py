@@ -38,12 +38,8 @@ def taskUpdateView(request,task_id):
     if request.method=="POST":
         form=TaskForm(request.POST,instance=task)
         if form.is_valid():
-            task_title=form.cleaned_data.get('task_title')
-            task_description=form.cleaned_data.get('task_description')
-            isCompleted=form.cleaned_data.get('isCompleted')
-            task=Task.objects.create(task_title=task_title,task_description=task_description,isCompleted=isCompleted,user=request.user)
-            task.save()
-            return redirect('todoApp:task_list')
+            form.save()
+        return redirect('todoApp:task_list')
     else:
         form=TaskForm()
     return render(request,'todoApp/task_update.html',{'form':form})
