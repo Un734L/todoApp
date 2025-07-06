@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <style>
+        td{
+            padding: 5px 10px;
+            text-align: center;
+            
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend><h2>Tasks</h2></legend>
+
+        <fieldset class="done-tasks">
+            <legend>
+                <h2>Completed Tasks</h2>
+            </legend>
+            {% if completedTasks %}
+            <table>
+                <tr>
+                    <th>Status</th>
+                    <th>Title</th>
+                    <th>Date Recorded</th>
+                    <th>Actions</th>
+                </tr>
+                {% for task in completedTasks %}
+                <tr>
+                    <td>Completed</td>
+                    <td>{{task.task_title}}</td>
+                    <td>{{task.date_recorded}}</td>
+                    <td>
+                        <button type="button"><a href="{% url 'todoApp:task_details' task.id %}">Details</a></button>
+                        <button type="button"><a href="{% url 'todoApp:task_complete' task.id %}">Revert</a></button>
+                    </td>
+                </tr>
+                {% endfor %}
+            
+            </table>
+            {% else %}
+            <p><strong>No Tasks Recorded</strong></p>
+            {% endif %}
+        </fieldset>
+        <br><br>
+        <fieldset class="undone-tasks">
+            <legend>
+                <h2>Tasks To Be Completed</h2>
+            </legend>
+            {%if uncompletedTasks %}
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Date Recorded</th>
+                    <th>Actions</th>
+                </tr>
+                {% for task in uncompletedTasks %}
+                <tr>
+                    <td>{{task.task_title}}</td>
+                    <td>{{task.date_recorded}}</td>
+                    <td>
+                        <button type="button"><a href="{% url 'todoApp:task_details' task.id %}">Details</a></button>
+                        <button type="button"><a href="{% url 'todoApp:task_complete' task.id %}">Complete</a></button>
+                        <button type="button"><a href="{% url 'todoApp:task_update' task.id %}">Update</a></button>
+                        <button type="button"><a href="{% url 'todoApp:task_delete' task.id %}">Delete</a></button>
+                    </td>
+                </tr>
+                {% endfor %}
+            
+            </table>
+            {% else %}
+            <p><strong>No Tasks Recorded</strong></p>
+            {% endif %}
+        </fieldset>
+        <br><br>
+    </fieldset>
+    <br><br>
+    <center>
+        <form action="{% url 'todoApp:task_create' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn">Add Task</button>
+        </form>
+    </center>
+</body>
+</html>

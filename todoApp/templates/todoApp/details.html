@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+</head>
+<body>
+    <fieldset>
+        <legend><h2>'{{task.task_title.capitalize}}' Details</h2></legend>
+        <fieldset class="description-field">
+            <h4><u>{{task.task_title}}</u></h4>
+            <p>{{task.task_description}}</p>
+        </fieldset>
+        <h4><u>Completion Status</u></h4>
+        {%if completedTask %}
+        <p style="color: green;"><strong>Completed.</strong></p>
+        {% else %}
+        <p style="color:red;"><strong>Not Completed</strong></p>
+        {% endif %}
+    </fieldset>
+    <button type="button"><a href="{% url 'todoApp:task_list' %}">Back</a></button> <button type="button"><a href="{% url 'todoApp:task_update' task.id %}">Update</a></button>
+</body>
+</html>                                    

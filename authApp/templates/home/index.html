@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'authApp/styles.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><button type="button"><a href="{% url 'todoApp:task_create' %}">Add Task</a></button></li>
+            <li><button type="button"><a href="{% url 'todoApp:task_list' %}">View Tasks</a></button></li>
+        </ul>
+    </nav>
+    <div class="home-content">
+        <fieldset>
+            <legend><h2>Home</h2></legend>
+            <h4>Welcome {{user.username.capitalize}};</h4>
+            <button type="button"><a href="{% url 'logout' %}">Logout</a></button>
+        </fieldset>
+    </div>
+</body>
+</html>

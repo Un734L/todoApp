@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Delete</title>
+</head>
+<body>
+    <fieldset>
+        <lengend>
+            <h2>Delete Task</h2>
+        </lengend>
+        <p>Are You Sure you Want to Delete Task <strong>'{{task.task_title}}'</strong>?
+        <form  method="post">
+            {% csrf_token %}
+            <button type="submit">Yes</button><button type="button"><a href="{% url 'todoApp:task_list' %}">No</a></button>
+        </form>
+        </p>
+    </fieldset>
+</body>
+</html>
