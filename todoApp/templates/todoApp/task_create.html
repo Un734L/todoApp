@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Create</title>
+    <link rel="stylesheet" href="{% static 'todoApp/styles.css' %}">
 </head>
 <body>
     <div>
@@ -11,8 +13,8 @@
         <form action="{% url 'todoApp:task_create' %}" method="post">
             {% csrf_token %}
             {{form.as_p}}
-            <button type="submit">Create</button>
+            <button type="button"><a href="{% url 'todoApp:task_list' %}">Back</a> <button type="submit">Create</button>
         </form>
     </div>
-</body>
+</body>                  
 </html>
