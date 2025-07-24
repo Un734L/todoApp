@@ -5,25 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="{% static 'authApp/styles.css' %}">
 </head>
 <body>
     <div class="content-container">
-        <h2>Login</h2>
+        <div class="H-div"><h2 class="header">Login</h2></div>
         <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="next" value='home'>
             <div class="form-container">
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username" required>
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" required>
+                <!-- <label class="" for="username">Username:</label> -->
+                <input class="entry" placeholder="username" type="text" name="username" id="username" required>
+                <!-- <label for="password">Password:</label> -->
+                <input class="entry" placeholder="password" type="password" name="password" id="password" required>
+                <button class="login-button" type="submit">Login</button>
+                {% if error %}
+                <p style='color: red;'>{{error}}</p>
+                {% endif %}
+                <p class="no-account">Don't Have an account?<a href="{% url 'register' %}">Register Here.</a></p>
             </div>
-            <button type="submit">Login</button>
         </form>
-        {% if error %}
-        <p style='color: red;'>{{error}}</p>
-        {% endif %}
-        <p>Don't Have an account?<a href="{% url 'register' %}">Register Here.</a></p>
     </div>
 </body>
 </html>
